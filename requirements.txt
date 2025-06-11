@@ -3,3 +3,8 @@ uvicorn[standard]==0.29.0
 jinja2==3.1.4
 python-multipart==0.0.9
 starlette==0.37.2
+black
+isort
+pytest
+httpx
+itsdangerous
