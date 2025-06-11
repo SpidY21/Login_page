@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="form-container">
+    <h2>Admin Dashboard</h2>
+
+    <h3>Add New User</h3>
+    <form method="post" action="/admin/add">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <p class="error">{{ error }}</p>
+
+    <h3>Registered Users</h3>
+    <table>
+        <tr><th>ID</th><th>Username</th><th>Action</th></tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>
+                    {% if user[1] != "admin" %}
+                    <form method="post" action="/admin/delete/{{ user[0] }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                    {% else %}
+                        Admin
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="/logout">Logout</a></p>
+</div>
+</body>
+</html>
